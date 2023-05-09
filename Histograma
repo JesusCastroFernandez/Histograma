@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Histograma {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Introduce el número de filas para el histograma (mínimo 12): ");
+        int filas = sc.nextInt();
+        filas = filas - (filas % 4); //ajustar al múltiplo de 4 más cercano
+        int maximoSimbolos = filas / 2;
+
+        for (int i = 1; i <= filas; i++) {
+            int simbolosFila = (int) (Math.random() * (maximoSimbolos - 3 + 1) + 3); //número aleatorio de símbolos entre 3 y la mitad del número de filas
+            char simbolo = ' ';
+
+            if (i % 4 == 1) { //primera fila de cada bloque de 4
+                simbolo = '*';
+            } else if (i % 4 == 2) { //segunda fila de cada bloque de 4
+                simbolo = '#';
+            } else if (i % 4 == 3) { //tercera fila de cada bloque de 4
+                simbolo = '@';
+            } else if (i % 4 == 0) { //cuarta fila de cada bloque de 4
+                simbolo = '>';
+            }
+
+            for (int j = 1; j <= simbolosFila; j++) { //imprimir símbolos de la fila actual
+                System.out.print(simbolo);
+            }
+            System.out.println(); //salto de línea
+
+            if (i % 4 == 0) { //imprimir línea de guiones cada 4 filas
+                for (int k = 1; k <= simbolosFila; k++) {
+                    System.out.print("-");
+                }
+                System.out.println(); //salto de línea
+            }
+        }
+    }
+}
